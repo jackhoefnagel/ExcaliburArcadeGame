@@ -85,6 +85,8 @@ export class Player extends Actor {
     if (event.other instanceof Enemy) {
       if (this.damageTimeout <= 0) {
         this.getDamage()
+        let hitSound = Resources.AudioHit
+        hitSound.play()
       }
     }
   }

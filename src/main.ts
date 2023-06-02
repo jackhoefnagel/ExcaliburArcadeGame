@@ -25,7 +25,7 @@ class Game extends Engine {
 
     
 
-    const loader = new Loader([Resources.BG, Resources.Sword, Resources.Armadillo, Resources.Jackalope, Resources.Lives, Resources.Ready, Resources.PlayerWins]);
+    const loader = new Loader([Resources.BG, Resources.Sword, Resources.Armadillo, Resources.Jackalope, Resources.Lives, Resources.Ready, Resources.PlayerWins, Resources.AudioGameOver, Resources.AudioHit, Resources.GameMusic]);
     this.start(loader);    
   }
 

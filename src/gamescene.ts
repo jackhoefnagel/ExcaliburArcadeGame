@@ -16,6 +16,9 @@ export class GameScene extends Scene {
     rightcells: Spawncell[]
     bottomcells: Spawncell[]
 
+    gamemusic = Resources.GameMusic
+        
+
     constructor() {
         super();
 
@@ -31,16 +34,18 @@ export class GameScene extends Scene {
         })
 
 
-
+        
 
         Physics.useRealisticPhysics()
     }
 
     onInitialize(_engine: Engine): void {
         this.add(this.spawnTimer)
+        this.gamemusic.loop = true
     }
 
     onActivate(_context: SceneActivationContext<unknown>): void {
+        this.gamemusic.play()
 
         this.isPlaying = true
 
@@ -66,6 +71,8 @@ export class GameScene extends Scene {
 
     onDeactivate(_context: SceneActivationContext<undefined>): void {
         console.log(this.actors)
+
+        this.gamemusic.pause()
 
         this.actors.forEach(element => {
             element.kill()
