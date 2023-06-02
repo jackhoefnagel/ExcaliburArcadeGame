@@ -10,6 +10,8 @@ Meant for Hogeschool Rotterdam CMGT Arcade cabinet, joystick version is coming u
 Credits:
 - Various graphics from [Kenney.nl](https://kenney.nl/)
 - Armadillo and Jackalope graphics from [Elthen's Pixel Art Shop](https://elthen.itch.io/)
+- Music composed by using samples from [Splice - Chiptune](https://splice.com/sounds/packs/sample-magic/chiptune)
+- Sound FX generated with [SFXR.me](https://sfxr.me/)
 
 ![](media/screen1.png)
 ![](media/screen2.png)
