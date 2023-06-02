@@ -1,5 +1,7 @@
 # Excalibur Local Multiplayer Game
 
+## [Click here to play!)](https://jackhoefnagel.github.io/ExcaliburArcadeGame/)
+
 ![](media/game4.gif)
 
 Little test project to test the Excalibur framework for local multiplayer code.
