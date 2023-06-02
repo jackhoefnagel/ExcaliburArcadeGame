@@ -1,6 +1,6 @@
 # Excalibur Local Multiplayer Game
 
-## [Click here to play!)](https://jackhoefnagel.github.io/ExcaliburArcadeGame/)
+## [Click here to play!](https://jackhoefnagel.github.io/ExcaliburArcadeGame/)
 
 ![](media/game4.gif)
 
