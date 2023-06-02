@@ -45,6 +45,7 @@ export class GameScene extends Scene {
     }
 
     onActivate(_context: SceneActivationContext<unknown>): void {
+        this.gamemusic.loop = true
         this.gamemusic.play()
 
         this.isPlaying = true
