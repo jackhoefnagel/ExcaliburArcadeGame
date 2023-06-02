@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build --outDir=docs --base=/ExcaliburArcadeGame/",
     "serve": "vite preview",
     "test": "npm run build && ex-test -d ./dist -t ./test/test.js"
   },
