@@ -1,8 +1,9 @@
-import { Actor, CollisionType, Engine, Vector, Input, DegreeOfFreedom, CollisionStartEvent, SpriteSheet, AnimationStrategy, range, Animation } from "excalibur";
+import { Actor, CollisionType, Engine, Vector, DegreeOfFreedom, CollisionStartEvent, SpriteSheet, AnimationStrategy, range, Animation } from "excalibur";
 import { Resources } from "./resources";
 import { Enemy } from "./enemy";
 import { Lives } from "./lives";
 import { GameScene } from "./gamescene";
+import { InputHandler } from "./inputhandler";
 
 export class Player extends Actor {
 
@@ -20,14 +21,15 @@ export class Player extends Actor {
   lives = 5
   livesGraphics
   playerScene: GameScene
-  
+  inputHandler
 
-  constructor(playerID: number, thisScene: GameScene) {
+  constructor(playerID: number, thisScene: GameScene, sceneInputHandler: InputHandler) {
     super({
       radius: 40
     });
 
     this.playerScene = thisScene
+    this.inputHandler = sceneInputHandler
 
     this.livesGraphics = new Lives(playerID)
     this.addChild(this.livesGraphics)
@@ -89,6 +91,11 @@ export class Player extends Actor {
         hitSound.play()
       }
     }
+
+    if (event.other instanceof Player) {
+      let direction = event.other.pos.sub(this.pos)
+      event.other.body.applyLinearImpulse(direction.scale(60))
+    }
   }
 
   getDamage() {
@@ -119,43 +126,23 @@ export class Player extends Actor {
 
   onPreUpdate(_engine: Engine, _delta: number): void {
     if(this.lives>0){
-      this.processControls(_engine, _delta)
+      this.processControls(_delta)
       if (this.damageTimeout > 0) this.damageTimeout -= _delta
     }
 
   }
 
-  processControls(engine: Engine, _delta: number) {
+  processControls(_delta: number) {
     let xspeed = 0
     let yspeed = 0
 
     if (this.thisPlayerID == 1) {
-      if (engine.input.keyboard.isHeld(Input.Keys.W)) {
-        yspeed = -1
-      }
-      if (engine.input.keyboard.isHeld(Input.Keys.S)) {
-        yspeed = 1
-      }
-      if (engine.input.keyboard.isHeld(Input.Keys.A)) {
-        xspeed = -1.6
-      }
-      if (engine.input.keyboard.isHeld(Input.Keys.D)) {
-        xspeed = 1.6
-      }
+      xspeed = this.inputHandler.p0Horizontal * 1.6;
+      yspeed = this.inputHandler.p0Vertical;
     }
     else if (this.thisPlayerID == 2) {
-      if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
-        yspeed = -1
-      }
-      if (engine.input.keyboard.isHeld(Input.Keys.Down)) {
-        yspeed = 1
-      }
-      if (engine.input.keyboard.isHeld(Input.Keys.Left)) {
-        xspeed = -1.6
-      }
-      if (engine.input.keyboard.isHeld(Input.Keys.Right)) {
-        xspeed = 1.6
-      }
+      xspeed = this.inputHandler.p1Horizontal * 1.6;
+      yspeed = this.inputHandler.p1Vertical;
     }
 
     this.vel = this.vel.add(new Vector(xspeed * _delta * this.movespeed, yspeed * _delta * this.movespeed))

@@ -5,6 +5,7 @@ import { Spawncell } from "./spawncell";
 import { Player } from "./player";
 import { PlayerWins } from "./playerwins";
 import { Enemy } from "./enemy";
+import { InputHandler } from "./inputhandler";
 
 export class GameScene extends Scene {
 
@@ -17,6 +18,8 @@ export class GameScene extends Scene {
     bottomcells: Spawncell[]
 
     gamemusic = Resources.GameMusic
+
+    inputHandler
         
 
     constructor() {
@@ -33,8 +36,7 @@ export class GameScene extends Scene {
             interval: 1500
         })
 
-
-        
+        this.inputHandler = new InputHandler();
 
         Physics.useRealisticPhysics()
     }
@@ -55,17 +57,19 @@ export class GameScene extends Scene {
         this.spawnTimer.reset()
         this.spawnTimer.start()
 
+        this.add(this.inputHandler)
+
         const bg = new Actor()
         bg.graphics.use(Resources.BG.toSprite())
         bg.anchor = new Vector(0, 0)
         bg.pos = new Vector(0, 0)
         this.add(bg)
 
-        const player1 = new Player(1, this)
+        const player1 = new Player(1, this, this.inputHandler)
         player1.pos = new Vector(_context.engine.screen.halfDrawWidth - 100, _context.engine.screen.halfDrawHeight)
         this.add(player1)
 
-        const player2 = new Player(2, this)
+        const player2 = new Player(2, this, this.inputHandler)
         player2.pos = new Vector(_context.engine.screen.halfDrawWidth + 100, _context.engine.screen.halfDrawHeight)
         this.add(player2)
     }
@@ -106,7 +110,6 @@ export class GameScene extends Scene {
     }
 
     spawnWave() {
-
         this.bottomcells[randomIntInRange(0, 4)].spawnEnemy()
         this.topcells[randomIntInRange(0, 4)].spawnEnemy()
         this.leftcells[randomIntInRange(0, 4)].spawnEnemy()

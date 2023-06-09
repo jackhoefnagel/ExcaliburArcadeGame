@@ -3,7 +3,6 @@ import { Resources } from "./resources";
 import { GameScene } from "./gamescene";
 import { ReadyScreen } from "./readyscreen";
 
-
 class Game extends Engine {
 
   constructor() {
@@ -12,7 +11,7 @@ class Game extends Engine {
     //this.debug.transform.showAll = true
     //this.showDebug(true);
 
-    Physics.useRealisticPhysics()
+    Physics.useRealisticPhysics();
   }
 
   initialize() {
@@ -23,11 +22,15 @@ class Game extends Engine {
     this.addScene('ready', readyScreen)
     this.goToScene('ready')
 
-    
-
     const loader = new Loader([Resources.BG, Resources.Sword, Resources.Armadillo, Resources.Jackalope, Resources.Lives, Resources.Ready, Resources.PlayerWins, Resources.AudioGameOver, Resources.AudioHit, Resources.GameMusic]);
-    this.start(loader);    
+    this.start(loader);
   }
+
+
+
+
+
+
 
 }
 
