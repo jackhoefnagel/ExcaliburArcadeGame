@@ -22,7 +22,7 @@ export class ReadyScreen extends Scene{
         this.add(this.inputHandler)
     }
 
-    onPreUpdate(engine: Engine, _delta: number): void {
+    onPreUpdate(engine: Engine, _delta: number): void {        
         if (this.inputHandler.p0Horizontal != 0 || 
             this.inputHandler.p0Vertical != 0 || 
             this.inputHandler.p1Horizontal != 0 || 

@@ -1,4 +1,4 @@
-import { Engine, Scene, SceneActivationContext } from "excalibur";
+import { CollisionType, DegreeOfFreedom, Engine, Scene, SceneActivationContext } from "excalibur";
 import { Actor, Physics, Timer, Vector, randomIntInRange } from "excalibur";
 import { Resources } from "./resources";
 import { Spawncell } from "./spawncell";
@@ -6,6 +6,7 @@ import { Player } from "./player";
 import { PlayerWins } from "./playerwins";
 import { Enemy } from "./enemy";
 import { InputHandler } from "./inputhandler";
+//import { EnemyWalk } from "./enemywalk";
 
 export class GameScene extends Scene {
 
@@ -72,6 +73,7 @@ export class GameScene extends Scene {
         const player2 = new Player(2, this, this.inputHandler)
         player2.pos = new Vector(_context.engine.screen.halfDrawWidth + 100, _context.engine.screen.halfDrawHeight)
         this.add(player2)
+
     }
 
     onDeactivate(_context: SceneActivationContext<undefined>): void {

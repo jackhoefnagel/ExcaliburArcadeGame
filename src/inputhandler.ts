@@ -89,10 +89,8 @@ export class InputHandler extends Actor {
             joystick.update()
         }
 
-        this.processJoystickInput()
-        this.processKeyboardInput(_engine)
-
-        
+          //this.processKeyboardInput(_engine)              
+          this.processJoystickInput()    
     }
 
     processJoystickInput(){

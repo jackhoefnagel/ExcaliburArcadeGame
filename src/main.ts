@@ -1,4 +1,4 @@
-import { Engine, Loader, Physics } from "excalibur";
+import { Engine, Loader, Physics, clamp } from "excalibur";
 import { Resources } from "./resources";
 import { GameScene } from "./gamescene";
 import { ReadyScreen } from "./readyscreen";
@@ -20,10 +20,13 @@ class Game extends Engine {
     this.addScene('game', gameScene)
     const readyScreen = new ReadyScreen()
     this.addScene('ready', readyScreen)
-    this.goToScene('ready')
-
-    const loader = new Loader([Resources.BG, Resources.Sword, Resources.Armadillo, Resources.Jackalope, Resources.Lives, Resources.Ready, Resources.PlayerWins, Resources.AudioGameOver, Resources.AudioHit, Resources.GameMusic]);
-    this.start(loader);
+    
+    const loader = new Loader([Resources.BG, Resources.Sword, Resources.Armadillo, Resources.Jackalope, Resources.Lives, Resources.Ready, Resources.PlayerWins, Resources.AudioGameOver, Resources.AudioHit, Resources.GameMusic]);  
+    loader.suppressPlayButton = true;
+    this.start(loader).then( ()=> {
+      this.goToScene('ready');
+    });
+    
   }
 
 
