@@ -23,7 +23,7 @@ export class InputHandler extends Actor {
 
     constructor() {
         super()
-        this.arcade = new Arcade(this, true, true)
+        this.arcade = new Arcade(this, true, false)
         this.joystickListener = (e: CustomEvent) => this.joyStickFound(e)
 
         // Joystick 1
