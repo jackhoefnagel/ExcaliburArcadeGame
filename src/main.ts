@@ -1,4 +1,4 @@
-import { Engine, Loader, Physics, clamp } from "excalibur";
+import { Engine, Loader, Physics } from "excalibur";
 import { Resources } from "./resources";
 import { GameScene } from "./gamescene";
 import { ReadyScreen } from "./readyscreen";
@@ -9,13 +9,15 @@ class Game extends Engine {
     super({ width: 1440, height: 900 });
 
     //this.debug.transform.showAll = true
-    //this.showDebug(true);
-
+    //this.showDebug(true);    
     Physics.useRealisticPhysics();
+
+    this.graphicsContext.smoothing = false;
   }
 
   initialize() {
 
+    
     const gameScene = new GameScene()
     this.addScene('game', gameScene)
     const readyScreen = new ReadyScreen()
@@ -28,12 +30,6 @@ class Game extends Engine {
     });
     
   }
-
-
-
-
-
-
 
 }
 
