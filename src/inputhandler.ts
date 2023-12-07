@@ -23,7 +23,7 @@ export class InputHandler extends Actor {
 
     constructor() {
         super()
-        this.arcade = new Arcade(this, false, true)
+        this.arcade = new Arcade(this, true, true)
         this.joystickListener = (e: CustomEvent) => this.joyStickFound(e)
 
         // Joystick 1
@@ -80,6 +80,7 @@ export class InputHandler extends Actor {
 
         // debug, this shows you the names of the buttons when they are pressed
         for (const buttonEvent of joystick.ButtonEvents) {
+            console.log(buttonEvent)
             document.addEventListener(buttonEvent, () => console.log(buttonEvent))
         }
     }
@@ -90,7 +91,7 @@ export class InputHandler extends Actor {
         }
 
           //this.processKeyboardInput(_engine)              
-          this.processJoystickInput()    
+          this.processJoystickInput()
     }
 
     processJoystickInput(){
